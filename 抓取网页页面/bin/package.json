@@ -1,0 +1,19 @@
+{
+  "name": "stuffs",
+  "version": "1.0.0",
+  "description": "抓取网页",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.14.1",
+    "mysql": "^2.10.2",
+    "images": "^3.0.0",
+    "selenium-webdriver": "^3.0.0-beta-3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
