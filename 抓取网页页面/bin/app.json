@@ -1,0 +1,14 @@
+{
+    "dataDir"    : "..\\data",
+    "dbhost"     : "127.0.0.1",
+    "dbuser"     : "testa",
+    "dbpassword" : "123456",
+    "dbport"     : "3306",
+    "dbname"     : "db_table_a",
+
+    "dbhost_gameapp"     : "127.0.0.1",
+    "dbuser_gameapp"     : "testb",
+    "dbpassword_gameapp" : "123456",
+    "dbport_gameapp"     : "3306",
+    "dbname_gameapp"     : "db_table_b"
+}
