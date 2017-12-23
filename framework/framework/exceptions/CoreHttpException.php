@@ -59,7 +59,7 @@ class CoreHttpException extends Exception
     ];
 
     // 记录日志
-    // TODO
+    App::$container->getSingle('logger')->write($data);
 
     // 执行响应
     header('Content-Type:Application/json; Charset=utf-8');
@@ -87,7 +87,7 @@ class CoreHttpException extends Exception
     ];
 
     // 记录日志
-    // TODO
+    App::$container->getSingle('logger')->write($data);
 
     // 执行响应
     header('Content-Type:Application/json; Charset=utf-8');
