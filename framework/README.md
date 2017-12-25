@@ -57,3 +57,46 @@
   |-- Request.php                   [请求类]
   |-- Response.php                  [响应类]
   |-- run.php                       [框架启动脚本]
+
+  app                               [PHP 应用目录]
+  |-- demo                          [模块目录]
+  |     |-- controllers             [控制器目录]
+  |     |   |-- Index.php           [默认控制器文件]
+  |     |-- Logics                  [逻辑层，主要写业务逻辑的地方]
+  |     |   |-- exceptions          [异常目录]
+  |     |   |-- gateway             [一个逻辑层实现的 gateway 演示]
+  |     |   |-- tools               [工具类目录]
+  |     |   |-- UserDefinedCase.php [注册框架加载到路由前的处理用例]
+  |     |-- models                  [数据模型目录]
+  |         |-- TestTable           [演示模型文件，定义一一对应的数据模型]
+
+  jobs                              [脚本目录，写业务脚本的地方]
+  |-- demo                          [模块目录]
+  |     |-- Demo.php                [脚本演示文件]
+
+  config                            [配置目录]
+  |-- demo                          [模块配置目录]
+  |     |-- config.php              [模块自定义配置]
+  |     |-- route.php               [模块自定义路由]
+  |-- common.php                    [公共配置]
+  |-- database.php                  [数据库配置]
+  |-- nosql.php                     [nosql 配置]
+
+  public                            [公共资源目录]
+  |-- dist                          [前端 build 之后的资源目录]
+  |     |-- ...
+  |-- index.html                    [前端入口文件，build 生成的文件]
+  |-- index.php                     [后端入口文件]
+  
+  runtimes                          [临时目录]
+  |-- logs                          [日志目录]
+  |-- build                         [PHP 打包生成 phar 文件目录]
+  
+  vendor                            [composer 目录]
+  .env.example                      [env 环境变量示例文件]
+  .gitignore                        [git 忽略配置文件]
+  composer.json                     [composer 配置文件]
+  run                               [快速开始脚本]
+  build                             [PHP 打包脚本]
+  cli                               [框架 cli 模式运行脚本]
+```

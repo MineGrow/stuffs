@@ -113,7 +113,7 @@ class Request
    */
   private $requestId = '';
 
-  public function __contruct(App $app)
+  public function __construct(App $app)
   {
     $this->serverParams = $_SERVER;
     $this->method       = isset($_SERVER['REQUEST_METHOD']) ? strtolower($_SERVER['REQUEST_METHOD']) : 'get';

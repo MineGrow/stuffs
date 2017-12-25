@@ -1,0 +1,34 @@
+{
+    "name": "weektrip/framework",
+    "description": "A PHP Framework",
+    "type": "framework",
+    "require": {
+        "mongodb/mongodb": "^1.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.5.*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "weektrip",
+            "email": "weektrip@foxmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "scripts": {
+        "post-install-cmd": [
+            "cp .env.example .env",
+            "chmod -R 777 runtimes",
+            "composer dump-autoload --optimize"
+        ],
+        "post-create-project-cmd": [
+            "composer install",
+            "cp ./.git-hooks/* ./git/hooks"
+        ],
+        "pre-status-cmd": [
+            "cp .env.example .env",
+            "rm -rf runtime/*"
+        ]
+    }
+}

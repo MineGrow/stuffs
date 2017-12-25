@@ -1,0 +1,122 @@
+<?php
+/*************************************************
+ *                  Easy PHP                     *
+ *                                               *
+ * A Faster Lightweight Full-Stack PHP Framework *
+ *                                               *
+ *                  TIERGB                       *
+ *        <https://github.com/TIGERB>            *
+ *                                               *
+ *************************************************/
+ 
+/**
+ * cli模式
+ *
+ * 在php cli模式下运行框架运行框架
+ * 
+ * 快速开始demo: php cli --run
+ */
+// php cli --env=<environment> --<method|job>=<value> --<arguments>=<value> ...
+// \033[33m env \033[0m:          Script run environment
+//
+/**
+ * 命令行参数list
+ */
+$help = function () {
+    $string =  <<<HELP
+    \033[36m Cli Usage \033[0m:
+        php cli --<method||job>=<value> --<arguments>=<value> ...
+
+    \033[36m Example \033[0m:
+        php cli --method=demo.index.get --username=test
+        php cli --job=demo.demo.test --username=test
+
+    \033[36m Params mean \033[0m:
+        \033[33m run \033[0m:          Quick start this framework
+        \033[33m method \033[0m:       The function will running, value format <module.controller.action>
+        \033[33m job \033[0m:          The function will running, value format <module.job.action>
+        \033[33m arguments \033[0m:    Input arguments
+        \033[33m build \033[0m:        Build this app file to the phar file
+        \033[33m help      \033[0m:    Display command list
+
+    \033[36m Quick start demo \033[0m:
+        php cli --run
+
+    \033[36m Build framework to phar file \033[0m:
+        php cli --build
+
+    \033[32mEasy PHP: A Faster Lightweight Full-Stack PHP Framework. Version 0.7.1\033[0m
+
+    \033[32mAuthor  : TIGERB <https://github.com/TIGERB>\033[0m
+    \n
+HELP;
+
+    die($string);
+};
+
+/**
+ * 快速开始demo
+ */
+$demo = function () {
+    shell_exec('./run');
+    die;
+};
+
+/**
+ * 打包
+ */
+$build = function () {
+    shell_exec('php build');
+    echo "SUCCESS";
+    die;
+};
+
+/**
+ * 获取参数
+ */
+if (count($argv) === 1) {
+    $help();
+}
+$input = [];
+foreach ($argv as $v) {
+    preg_match_all('/^--(.*)/', $v, $match);
+    if (isset($match[1][0]) && ! empty($match[1][0])) {
+        $match = explode('=', $match[1][0]);
+        if ($match[0] === 'help') {
+            $help();
+        }
+        if ($match[0] === 'run') {
+            $demo();
+        }
+        if ($match[0] === 'build') {
+            $build();
+        }
+        if (isset($match[1])) {
+            $input[$match[0]] = $match[1];
+        }
+    }
+}
+
+// 设置cli模式
+putenv('IS_CLI=yes');
+if (isset($input['method'])) {
+    $method              = $input['method'];
+    $method              = explode('.', $method);
+    $input['module']     = $method[0];
+    $input['controller'] = $method[1];
+    $input['action']     = $method[2];
+    $input['router_mode']= 'controller';
+    unset($input['method']);
+} else {
+    $job                 = $input['job'];
+    $job                 = explode('.', $job);
+    $input['module']     = $job[0];
+    $input['job']        = $job[1];
+    $input['action']     = $job[2];
+    $input['router_mode']= 'job';
+}
+
+$_REQUEST['argv'] = $input;
+
+// 载入框架运行文件
+require('framework/run.php');

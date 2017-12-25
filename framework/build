@@ -1,0 +1,31 @@
+<?php
+$packageName = 'App';
+$ext = 'phar';
+$time = date('YmdHis), time());
+$packageName = "{$packageName}.{$time}.{$ext}";
+
+if (! file_exists(__DIR__ . '/runtime/build/')) {
+  mkdir(__DIR__ . '/runtime/build/');
+}
+
+$phar = new Phar(
+  __DIR__ . '/runtime/build/' . $packageName,
+  0,
+  $packageName
+);
+
+$phar->buildFromDirectory(__DIR__ . '/', '/\.php$/');
+$phar->buildFromDirectory(__DIR__ . '/', '/\.nev$/');
+$phar->buildFromDirectory(__DIR__ . '/', '/^cli$/');
+
+$webIndex = "<?php
+Phar::mapPhar('{$packageName}')";
+require 'phar://{$packageName}/public/index.php';
+__HALT_COMPILER();
+?>";
+
+$phar->setStub(
+  $webIndex
+);
+
+echo "Build success in 'runtime/build/{$packageName}' \n";

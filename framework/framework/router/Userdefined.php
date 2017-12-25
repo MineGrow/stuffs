@@ -74,7 +74,7 @@ class Userdefined implements RouterInterface
     foreach ($module as $v) {
       // 加载自定义路由配置文件
       $routeFile = "{$entrance->app->rootPath}/config/{$v}/route.php";
-      if (file_exists) {
+      if (file_exists($routeFile)) {
         require($routeFile);
       }
     }
@@ -84,11 +84,11 @@ class Userdefined implements RouterInterface
     $request  = $app::$container->getSingle('request');
     $method   = $request->method . 'Map';
 
-    if (! isset($this->method)) {
+    if (! isset($this->$method)) {
       throw new CoreHttpException(404, 'Http Method:' . $request->method);
     }
 
-    if (! array_key_exists($uri, $this->method)) {
+    if (! array_key_exists($uri, $this->$method)) {
       return false;
     }
 

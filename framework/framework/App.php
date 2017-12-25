@@ -4,6 +4,7 @@ namespace Framework;
 
 use Framework\Container;
 use Framework\Exceptions\CoreHttpException;
+use Closure;
 
 /**
  * 框架应用类
@@ -69,7 +70,7 @@ class App
    */
   public static $container;
 
-  public function __contruct($rootPath, Closure $loader)
+  public function __construct($rootPath, Closure $loader)
   {
     // cli 模式
     $this->isCli = getenv('IS_CLI');

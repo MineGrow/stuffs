@@ -13,7 +13,7 @@ class Pathinfo implements RouterInterface
     if (strpos($entrance->requestUri, '?')) {
       preg_match_all('/^\/(.*)\?/', $entrance->requestUri, $uri);
     } else {
-      preg_match_all('/^\/(.*)\/', $entrance->requestUri, $uri);
+      preg_match_all('/^\/(.*)/', $entrance->requestUri, $uri);
     }
     
     // 使用默认 模块/控制器/操作逻辑
@@ -24,7 +24,7 @@ class Pathinfo implements RouterInterface
       }
       return ;
     }
-
+    
     $uri = $uri[1][0];
 
     // 自定义路由判断

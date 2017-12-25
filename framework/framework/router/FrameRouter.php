@@ -112,7 +112,7 @@ class FrameRouter
 
     // 获取控制器类
     $controllerName     = ucfirst($this->controllerName);
-    $folderName         = ucfirst($this->config->config['applications_folder_name']);
+    $folderName         = ucfirst($this->config->config['application_folder_name']);
     $this->classPath    = "{$folderName}\\{$this->moduleName}\\Controllers\\{$controllerName}";
     $this->executeType  = 'controller';
   }
